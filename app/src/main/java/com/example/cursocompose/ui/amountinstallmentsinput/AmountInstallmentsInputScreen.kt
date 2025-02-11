@@ -20,6 +20,11 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import com.example.cursocompose.R
+import com.example.cursocompose.ui.component.DropdownButton
+import com.example.cursocompose.ui.component.NumPad
+import com.example.cursocompose.ui.component.NumPadTextView
+import com.example.cursocompose.ui.component.NumPadType
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -46,35 +51,35 @@ fun AmountInstallmentsInputScreen() {
             .padding(16.dp),
         verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
-//        NumPadTextView(
-//            text = pin,
-//            hasError = false,
-//            errorMessage = stringResource(R.string.numpad_textview_error_message),
-//            type = NumPadType.PESOS,
-//            click = {
-//                isSheetVisible = true
-//                focusManager.clearFocus()
-//            },
-//            textViewHeight = 48
-//        )
+        NumPadTextView(
+            text = pin,
+            hasError = false,
+            errorMessage = stringResource(R.string.numpad_textview_error_message),
+            type = NumPadType.PESOS,
+            click = {
+                isSheetVisible = true
+                focusManager.clearFocus()
+            },
+            textViewHeight = 48
+        )
         var isExpanded by remember { mutableStateOf(false) }
         var selectedOption by remember { mutableStateOf<String?>(null) }
 
-//        DropdownButton(
-//            isExpanded = isExpanded,
-//            labelText = "Cuotas",
-//            selectedOption = selectedOption,
-//            listOption = listOf("1", "2", "6", "12", "24"),
-//
-//            onExpandedChange = {
-//                isExpanded = it
-//            },
-//            onValueSelect = { value ->
-//                selectedOption = value
-//                isExpanded = false
-//            },
-//            onDismissRequest = { isExpanded = false },
-//        )
+        DropdownButton(
+            isExpanded = isExpanded,
+            labelText = "Cuotas",
+            selectedOption = selectedOption,
+            listOption = listOf("1", "2", "6", "12", "24"),
+
+            onExpandedChange = {
+                isExpanded = it
+            },
+            onValueSelect = { value ->
+                selectedOption = value
+                isExpanded = false
+            },
+            onDismissRequest = { isExpanded = false },
+        )
     }
 
     if (isSheetVisible) {
@@ -89,23 +94,23 @@ fun AmountInstallmentsInputScreen() {
             modifier = Modifier.padding(bottom = 15.dp),
             dragHandle = { BottomSheetDefaults.DragHandle(color = Color.Transparent) }
         ) {
-//            NumPad(
-//                maxDigits = null,
-//                pin = pin,
-//                onNumberClick = { digit ->
-//                    pin += digit
-//                },
-//                onDeleteClick = {
-//                    if (pin.isNotEmpty()) {
-//                        pin = pin.dropLast(1)
-//                    }
-//                },
-//                onEnterClick = {
-//                    isSheetVisible = false
-//                    focusManager.clearFocus()
-//                },
-//                isAcceptEnabled = pin.isNotEmpty()
-//            )
+            NumPad(
+                maxDigits = null,
+                pin = pin,
+                onNumberClick = { digit ->
+                    pin += digit
+                },
+                onDeleteClick = {
+                    if (pin.isNotEmpty()) {
+                        pin = pin.dropLast(1)
+                    }
+                },
+                onEnterClick = {
+                    isSheetVisible = false
+                    focusManager.clearFocus()
+                },
+                isAcceptEnabled = pin.isNotEmpty()
+            )
         }
     }
 }

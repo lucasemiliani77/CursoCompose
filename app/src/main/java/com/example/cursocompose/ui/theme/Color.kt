@@ -23,6 +23,14 @@ val deepGreenColor = Color(0xFF039B24)
 val hopeGreenColor = Color(0xFF4EC53A)
 val greenApprovedColor = Color(0xFFA5F5D4)
 
+val Purple80 = Color(0xFFD0BCFF)
+val PurpleGrey80 = Color(0xFFCCC2DC)
+val Pink80 = Color(0xFFEFB8C8)
+
+val Purple40 = Color(0xFF6650a4)
+val PurpleGrey40 = Color(0xFF625b71)
+val Pink40 = Color(0xFF7D5260)
+
 val eldarPayLightBlue = Color(0xFF4A8ECC)
 val eldarPayBlue = Color(0xFF4A8ECC)
 val eldarPayTextBlue = Color(0xFF2B6A98)
