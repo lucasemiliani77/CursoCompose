@@ -32,4 +32,4 @@ val eldarPayPressedNumPad = Color(0xFFd9d9d9)
 val eldarPayNumPadWhite = Color(0xFFFAFCFF)
 val eldarPayErrorRed = Color(0xFFa50f0f)
 val eldarPayBackground = Color(0xFFE6F1FF)
-val eldarPayTextViewBackgroundFocus = Color(0xFFF0F6FF
+val eldarPayTextViewBackgroundFocus = Color(0xFFF0F6FF)
