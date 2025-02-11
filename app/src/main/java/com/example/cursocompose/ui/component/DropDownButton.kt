@@ -27,10 +27,11 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.cursocompose.R
 import com.example.cursocompose.ui.component.text.NormalText
-import com.example.cursocompose.ui.resource.EldarPadding.PADDING_LARGE
-import com.example.cursocompose.ui.resource.EldarPadding.PADDING_NONE
+import com.example.cursocompose.ui.resource.EldarSizes.PADDING_LARGE
+import com.example.cursocompose.ui.resource.EldarSizes.PADDING_NONE
 import com.example.cursocompose.ui.resource.mediumRoundedCornerShape
 import com.example.cursocompose.ui.theme.eldarPayBlue
+import com.example.cursocompose.ui.theme.eldarPayDarkTextColor
 import com.example.cursocompose.ui.theme.eldarPayNumPadWhite
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -62,7 +63,7 @@ fun DropdownButton(
                         .width(40.dp)
                         .height(40.dp)
                         .menuAnchor(MenuAnchorType.PrimaryNotEditable),
-                    tint = eldarPayBlue,
+                    tint = eldarPayDarkTextColor,
                 )
             },
         )
@@ -109,7 +110,7 @@ fun DropdownButtonLabel(
         Icon(
             painter = painterResource(id = R.drawable.icon_arrow_back),
             contentDescription = "",
-            tint = eldarPayBlue,
+            tint = eldarPayDarkTextColor,
         )
     },
 ) {

@@ -3,7 +3,9 @@ package com.example.cursocompose.ui.amountinstallmentsinput
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.BottomSheetDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -21,13 +23,19 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.cursocompose.R
 import com.example.cursocompose.ui.component.DropdownButton
-import com.example.cursocompose.ui.component.NumPad
-import com.example.cursocompose.ui.component.NumPadTextView
-import com.example.cursocompose.ui.component.NumPadType
+import com.example.cursocompose.ui.component.PrimaryButton
+import com.example.cursocompose.ui.component.numpad.NumPad
+import com.example.cursocompose.ui.component.numpad.NumPadTextView
+import com.example.cursocompose.ui.component.numpad.NumPadType
+import com.example.cursocompose.ui.component.text.BigText
+import com.example.cursocompose.ui.resource.EldarSizes.PADDING_LARGE
+import com.example.cursocompose.ui.resource.EldarSizes.SPACER_BIG
+import com.example.cursocompose.ui.resource.EldarSizes.SPACER_MEDIUM
+import com.example.cursocompose.ui.resource.EldarSizes.TEXT_VIEW_HEIGHT
+import com.example.cursocompose.ui.theme.eldarPayDarkTextColor
 import com.example.cursocompose.ui.theme.eldarPayLightBlueSecondaryColor
 import kotlinx.coroutines.launch
 
@@ -53,26 +61,38 @@ fun AmountInstallmentsInputScreen(viewModel: AmountInstallmentsInputScreenViewMo
         Modifier
             .background(eldarPayLightBlueSecondaryColor)
             .fillMaxSize()
-            .padding(24.dp),
-        verticalArrangement = Arrangement.spacedBy(8.dp)
+            .padding(PADDING_LARGE),
+            verticalArrangement = Arrangement.Top
     ) {
+
+        Spacer(modifier = Modifier.height(SPACER_BIG))
+
+        BigText(
+            text = stringResource(R.string.amount_installments_input_screen_title),
+            color = eldarPayDarkTextColor
+        )
+
+        Spacer(modifier = Modifier.height(SPACER_BIG))
+
         NumPadTextView(
             text = state.pin,
             hasError = false,
             errorMessage = stringResource(R.string.numpad_textview_error_message),
             type = NumPadType.PESOS,
+            textViewHeight = TEXT_VIEW_HEIGHT,
             click = {
                 viewModel.setSheetVisible(true)
                 focusManager.clearFocus()
-            },
-            textViewHeight = 48
+            }
         )
+
+        Spacer(modifier = Modifier.height(SPACER_MEDIUM))
 
         var isExpanded by remember { mutableStateOf(false) }
 
         DropdownButton(
             isExpanded = isExpanded,
-            labelText = "Cuotas",
+            labelText = stringResource(R.string.amount_installments_input_screen_drop_down_placeholder),
             selectedOption = state.selectedInstallment,
             listOption = state.installmentsListOption,
             onExpandedChange = { isExpanded = it },
@@ -81,6 +101,10 @@ fun AmountInstallmentsInputScreen(viewModel: AmountInstallmentsInputScreenViewMo
                 isExpanded = false
             },
             onDismissRequest = { isExpanded = false }
+        )
+
+        PrimaryButton(
+            text = stringResource(R.string.amount_installments_input_screen_button_title)
         )
     }
 
@@ -93,7 +117,7 @@ fun AmountInstallmentsInputScreen(viewModel: AmountInstallmentsInputScreenViewMo
             sheetState = sheetState,
             scrimColor = Color.Transparent,
             containerColor = Color.Transparent,
-            modifier = Modifier.padding(bottom = 15.dp),
+            modifier = Modifier.padding(bottom = PADDING_LARGE),
             dragHandle = { BottomSheetDefaults.DragHandle(color = Color.Transparent) }
         ) {
             NumPad(

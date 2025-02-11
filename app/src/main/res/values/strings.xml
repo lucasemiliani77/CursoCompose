@@ -17,5 +17,10 @@
     <string name="KEY_ACCEPT">accept</string>
     <string name="KEY_DELETE">delete</string>
     <string name="pin_mask">*</string>
+    <string name="button_placeholder">"Title</string>
     <string name="numpad_textview_error_message">"Complete el campo"</string>
+    <string name="amount_installments_input_screen_title">"Ingresar monto y cuotas"</string>
+    <string name="amount_installments_input_screen_drop_down_placeholder">"Cuotas"</string>
+    <string name="amount_installments_input_screen_button_title">"Procesar venta"</string>
+
 </resources>

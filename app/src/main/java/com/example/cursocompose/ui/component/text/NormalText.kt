@@ -13,7 +13,6 @@ import com.example.cursocompose.ui.resource.EldarFontSize.FONT_SIZE_BODY_EXTRA_S
 import com.example.cursocompose.ui.resource.EldarFontSize.FONT_SIZE_BODY_LARGE
 import com.example.cursocompose.ui.resource.EldarFontSize.FONT_SIZE_BODY_MEDIUM
 import com.example.cursocompose.ui.resource.EldarFontSize.FONT_SIZE_HEAD_LARGE
-import com.example.cursocompose.ui.resource.EldarFontSize.FONT_SIZE_HEAD_MEDIUM
 import com.example.cursocompose.ui.resource.futuraFontFamily
 import com.example.cursocompose.ui.theme.eldarPayDarkTextColor
 import com.example.cursocompose.ui.theme.eldarPayLightBlueColor
@@ -42,7 +41,7 @@ fun BigText(
     color: Color = eldarPayDarkTextColor,
 ) = Text(
     fontFamily = futuraFontFamily,
-    fontSize = FONT_SIZE_HEAD_MEDIUM,
+    fontSize = FONT_SIZE_HEAD_LARGE,
     text = text,
     color = color,
     textAlign = textAlign,

@@ -1,4 +1,4 @@
-package com.example.cursocompose.ui.component
+package com.example.cursocompose.ui.component.numpad
 
 import android.media.ToneGenerator
 import android.media.AudioManager

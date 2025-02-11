@@ -1,4 +1,4 @@
-package com.example.cursocompose.ui.component
+package com.example.cursocompose.ui.component.numpad
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -11,7 +11,6 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -25,14 +24,24 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import com.example.cursocompose.R
+import com.example.cursocompose.ui.resource.EldarFontSize.FONT_SIZE_BODY_LARGE
+import com.example.cursocompose.ui.resource.EldarFontSize.FONT_SIZE_MAX_NUM_PAD_TEXT_VIEW
+import com.example.cursocompose.ui.resource.EldarFontSize.FONT_SIZE_MIN_NUM_PAD_TEXT_VIEW
+import com.example.cursocompose.ui.resource.EldarFontSize.FONT_SIZE_NUM_PAD_TEXT_VIEW_DNI_PIN
+import com.example.cursocompose.ui.resource.EldarSizes.BORDER_WIDTH
+import com.example.cursocompose.ui.resource.EldarSizes.PADDING_LARGE
+import com.example.cursocompose.ui.resource.EldarSizes.PADDING_SMALL
+import com.example.cursocompose.ui.resource.mediumRoundedCornerShape
 import com.example.cursocompose.ui.theme.eldarPayBlue
 import com.example.cursocompose.ui.theme.eldarPayErrorRed
 import com.example.cursocompose.ui.theme.eldarPayLightBlue
 import com.example.cursocompose.ui.theme.eldarPayNumPadWhite
 import com.example.cursocompose.ui.theme.eldarPayTextBlue
 import com.example.cursocompose.ui.theme.eldarPayTextViewBackgroundFocus
+import com.example.cursocompose.util.Constants.CURRENCY_SYMBOL_AR
+import com.example.cursocompose.util.Constants.CURRENCY_SYMBOL_DOLLAR
+import com.example.cursocompose.util.Constants.NUM_PAD_TEXT_VIEW_MAX_LENGTH
 import java.text.DecimalFormat
 import java.text.DecimalFormatSymbols
 import java.util.Locale
@@ -46,7 +55,6 @@ fun NumPadTextView(
     errorMessage: String = "",
     type: NumPadType,
     textViewHeight: Int = 48,
-    externalPadding: Int? = null,
     click: () -> Unit
 ) {
     val interactionSource = remember { MutableInteractionSource() }
@@ -68,14 +76,14 @@ fun NumPadTextView(
         when (type) {
             NumPadType.DNI -> formatDNI(text)
             NumPadType.PIN -> text.map { stringResource(R.string.pin_mask) }.joinToString("")
-            NumPadType.PESOS -> formatCurrency(text, "AR$")
-            NumPadType.DOLLARS -> formatCurrency(text, "USD$")
+            NumPadType.PESOS -> formatCurrency(text, CURRENCY_SYMBOL_AR)
+            NumPadType.DOLLARS -> formatCurrency(text, CURRENCY_SYMBOL_DOLLAR)
         }
 
     val fontSize =
         when (type) {
             NumPadType.PESOS, NumPadType.DOLLARS -> calculateFontSize(maskedText)
-            else -> 48.sp
+            else -> FONT_SIZE_NUM_PAD_TEXT_VIEW_DNI_PIN
         }
 
     Column(
@@ -91,12 +99,12 @@ fun NumPadTextView(
             Modifier
                 .fillMaxWidth()
                 .height(textViewHeight.dp)
-                .clip(RoundedCornerShape(18.dp))
+                .clip(mediumRoundedCornerShape)
                 .background(backgroundColor)
                 .border(
-                    width = 1.dp,
+                    width = BORDER_WIDTH,
                     color = if (hasError) eldarPayErrorRed else eldarPayLightBlue,
-                    shape = RoundedCornerShape(18.dp),
+                    shape = mediumRoundedCornerShape,
                 ),
             verticalAlignment = Alignment.CenterVertically,
         ) {
@@ -115,11 +123,11 @@ fun NumPadTextView(
             Text(
                 text = errorMessage,
                 color = eldarPayErrorRed,
-                fontSize = 18.sp,
+                fontSize = FONT_SIZE_BODY_LARGE,
                 textAlign = TextAlign.Start,
                 modifier =
                 Modifier
-                    .padding(top = 10.dp, start = 20.dp, end = 20.dp)
+                    .padding(top = PADDING_SMALL, start = PADDING_LARGE, end = PADDING_LARGE)
                     .fillMaxWidth(),
             )
         }
@@ -157,9 +165,9 @@ fun formatCurrency(
 
 @Composable
 fun calculateFontSize(text: String): TextUnit {
-    val maxLength = 16
-    val maxFontSizePx = 80
-    val minFontSizePx = 56
+    val maxLength = NUM_PAD_TEXT_VIEW_MAX_LENGTH
+    val maxFontSizePx = FONT_SIZE_MAX_NUM_PAD_TEXT_VIEW
+    val minFontSizePx = FONT_SIZE_MIN_NUM_PAD_TEXT_VIEW
 
     val textLength = text.length
     val fontSizePx =
