@@ -5,17 +5,18 @@
     <application
         android:name=".EldarPayApplication"
         android:allowBackup="true"
-        android:theme="@style/Theme.CursoCompose"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
         android:label="EldarPay"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
+        android:theme="@style/Theme.EldarPay"
         tools:targetApi="31">
         <activity
             android:name=".MainActivity"
-            android:exported="true">
+            android:exported="true"
+            android:theme="@style/Theme.EldarPay">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

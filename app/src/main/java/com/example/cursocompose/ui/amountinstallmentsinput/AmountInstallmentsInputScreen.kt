@@ -1,8 +1,9 @@
 package com.example.cursocompose.ui.amountinstallmentsinput
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.BottomSheetDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -25,6 +26,7 @@ import com.example.cursocompose.ui.component.DropdownButton
 import com.example.cursocompose.ui.component.NumPad
 import com.example.cursocompose.ui.component.NumPadTextView
 import com.example.cursocompose.ui.component.NumPadType
+import com.example.cursocompose.ui.theme.eldarPayLightBlueSecondaryColor
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -46,9 +48,9 @@ fun AmountInstallmentsInputScreen() {
     }
 
     Column(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(16.dp),
+        Modifier.background(eldarPayLightBlueSecondaryColor)
+            .fillMaxSize()
+            .padding(24.dp),
         verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
         NumPadTextView(
