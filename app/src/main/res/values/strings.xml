@@ -1,3 +1,21 @@
 <resources>
     <string name="app_name">CursoCompose</string>
+    <string name="KEY_1">1</string>
+    <string name="KEY_2">2</string>
+    <string name="KEY_3">3</string>
+    <string name="KEY_4">4</string>
+    <string name="KEY_5">5</string>
+    <string name="KEY_6">6</string>
+    <string name="KEY_7">7</string>
+    <string name="KEY_8">8</string>
+    <string name="KEY_9">9</string>
+    <string name="KEY_CLEAR">CLEAR</string>
+    <string name="KEY_0">0</string>
+    <string name="KEY_ENTER">ENTER</string>
+    <string name="KEY_CANCEL">Cancelar</string>
+    <string name="KEY_CONFIRM">Confirmar</string>
+    <string name="KEY_ACCEPT">accept</string>
+    <string name="KEY_DELETE">delete</string>
+    <string name="pin_mask">*</string>
+    <string name="numpad_textview_error_message">"Complete el campo"</string>
 </resources>
