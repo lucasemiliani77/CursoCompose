@@ -27,9 +27,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.cursocompose.R
 import com.example.cursocompose.ui.component.text.NormalText
-import com.example.cursocompose.ui.resource.size.EldarPadding.PADDING_LARGE
-import com.example.cursocompose.ui.resource.size.EldarPadding.PADDING_NONE
-import com.example.cursocompose.ui.resource.size.shape.mediumRoundedCornerShape
+import com.example.cursocompose.ui.resource.EldarPadding.PADDING_LARGE
+import com.example.cursocompose.ui.resource.EldarPadding.PADDING_NONE
+import com.example.cursocompose.ui.resource.mediumRoundedCornerShape
 import com.example.cursocompose.ui.theme.eldarPayBlue
 import com.example.cursocompose.ui.theme.eldarPayNumPadWhite
 
@@ -129,7 +129,6 @@ fun DropdownButtonLabel(
                 .padding(horizontal = PADDING_LARGE, vertical = PADDING_NONE),
         )
 
-        // Ícono de flecha (trailing icon)
         Row(
             modifier = Modifier.align(Alignment.CenterEnd),
             verticalAlignment = Alignment.CenterVertically,

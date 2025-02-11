@@ -1,4 +1,4 @@
-package com.example.cursocompose.ui.resource.size.shape
+package com.example.cursocompose.ui.resource
 
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.ui.unit.dp

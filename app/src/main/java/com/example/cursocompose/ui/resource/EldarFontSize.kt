@@ -1,4 +1,4 @@
-package com.example.cursocompose.ui.resource.size
+package com.example.cursocompose.ui.resource
 
 import androidx.compose.ui.unit.sp
 
