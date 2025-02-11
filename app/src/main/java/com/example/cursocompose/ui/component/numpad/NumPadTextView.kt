@@ -22,6 +22,7 @@ import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import com.example.cursocompose.R
@@ -55,7 +56,8 @@ fun NumPadTextView(
     errorMessage: String = "",
     type: NumPadType,
     textViewHeight: Int = 48,
-    click: () -> Unit
+    click: () -> Unit,
+    horizontalPadding: Dp?
 ) {
     val interactionSource = remember { MutableInteractionSource() }
     val isPressed by interactionSource.collectIsPressedAsState()
@@ -86,12 +88,15 @@ fun NumPadTextView(
             else -> FONT_SIZE_NUM_PAD_TEXT_VIEW_DNI_PIN
         }
 
-    Column(
-        modifier = Modifier.clickable(
+    horizontalPadding?.let {
+        Modifier.clickable(
             interactionSource = interactionSource,
             indication = null,
             onClick = click
-        ),
+        ).padding(horizontal = it)
+    }?.let {
+        Column(
+        modifier = it,
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         Row(
@@ -131,6 +136,7 @@ fun NumPadTextView(
                     .fillMaxWidth(),
             )
         }
+    }
     }
 }
 

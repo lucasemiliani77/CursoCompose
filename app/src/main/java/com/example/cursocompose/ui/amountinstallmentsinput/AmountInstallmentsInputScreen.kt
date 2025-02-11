@@ -1,7 +1,6 @@
 package com.example.cursocompose.ui.amountinstallmentsinput
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -19,6 +18,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalFocusManager
@@ -32,6 +32,7 @@ import com.example.cursocompose.ui.component.numpad.NumPadTextView
 import com.example.cursocompose.ui.component.numpad.NumPadType
 import com.example.cursocompose.ui.component.text.BigText
 import com.example.cursocompose.ui.resource.EldarSizes.PADDING_LARGE
+import com.example.cursocompose.ui.resource.EldarSizes.PADDING_NONE
 import com.example.cursocompose.ui.resource.EldarSizes.SPACER_BIG
 import com.example.cursocompose.ui.resource.EldarSizes.SPACER_MEDIUM
 import com.example.cursocompose.ui.resource.EldarSizes.TEXT_VIEW_HEIGHT
@@ -44,9 +45,7 @@ import kotlinx.coroutines.launch
 fun AmountInstallmentsInputScreen(viewModel: AmountInstallmentsInputScreenViewModel = hiltViewModel()) {
     val scope = rememberCoroutineScope()
     val focusManager = LocalFocusManager.current
-
     val state by viewModel.state.collectAsState()
-
     val sheetState = rememberModalBottomSheetState()
 
     LaunchedEffect(state.isSheetVisible) {
@@ -59,52 +58,59 @@ fun AmountInstallmentsInputScreen(viewModel: AmountInstallmentsInputScreenViewMo
 
     Column(
         Modifier
-            .background(eldarPayLightBlueSecondaryColor)
             .fillMaxSize()
-            .padding(PADDING_LARGE),
-            verticalArrangement = Arrangement.Top
+            .background(eldarPayLightBlueSecondaryColor)
+            .padding(horizontal = PADDING_NONE, vertical = PADDING_LARGE)
     ) {
 
-        Spacer(modifier = Modifier.height(SPACER_BIG))
+        Column(
+            modifier = Modifier.weight(1f, fill = true),
+            horizontalAlignment = Alignment.Start
+        ) {
 
-        BigText(
-            text = stringResource(R.string.amount_installments_input_screen_title),
-            color = eldarPayDarkTextColor
-        )
+            Spacer(modifier = Modifier.height(SPACER_BIG))
 
-        Spacer(modifier = Modifier.height(SPACER_BIG))
+            BigText(
+                text = stringResource(R.string.amount_installments_input_screen_title),
+                color = eldarPayDarkTextColor,
+                modifier = Modifier.padding(horizontal = PADDING_LARGE)
+            )
 
-        NumPadTextView(
-            text = state.pin,
-            hasError = false,
-            errorMessage = stringResource(R.string.numpad_textview_error_message),
-            type = NumPadType.PESOS,
-            textViewHeight = TEXT_VIEW_HEIGHT,
-            click = {
-                viewModel.setSheetVisible(true)
-                focusManager.clearFocus()
-            }
-        )
+            Spacer(modifier = Modifier.height(SPACER_BIG))
 
-        Spacer(modifier = Modifier.height(SPACER_MEDIUM))
+            NumPadTextView(
+                text = state.pin,
+                hasError = false,
+                errorMessage = stringResource(R.string.numpad_textview_error_message),
+                type = NumPadType.PESOS,
+                textViewHeight = TEXT_VIEW_HEIGHT,
+                click = {
+                    viewModel.setSheetVisible(true)
+                    focusManager.clearFocus()
+                }, horizontalPadding = PADDING_LARGE
+            )
 
-        var isExpanded by remember { mutableStateOf(false) }
+            Spacer(modifier = Modifier.height(SPACER_MEDIUM))
 
-        DropdownButton(
-            isExpanded = isExpanded,
-            labelText = stringResource(R.string.amount_installments_input_screen_drop_down_placeholder),
-            selectedOption = state.selectedInstallment,
-            listOption = state.installmentsListOption,
-            onExpandedChange = { isExpanded = it },
-            onValueSelect = { value ->
-                viewModel.selectInstallment(value)
-                isExpanded = false
-            },
-            onDismissRequest = { isExpanded = false }
-        )
+            var isExpanded by remember { mutableStateOf(false) }
+            DropdownButton(
+                isExpanded = isExpanded,
+                labelText = stringResource(R.string.amount_installments_input_screen_drop_down_placeholder),
+                selectedOption = state.selectedInstallment,
+                listOption = state.installmentsListOption,
+                onExpandedChange = { isExpanded = it },
+                onValueSelect = { value ->
+                    viewModel.selectInstallment(value)
+                    isExpanded = false
+                },
+                onDismissRequest = { isExpanded = false },
+                horizontalPadding = PADDING_LARGE
+            )
+        }
 
         PrimaryButton(
-            text = stringResource(R.string.amount_installments_input_screen_button_title)
+            text = stringResource(R.string.amount_installments_input_screen_button_title),
+            modifier = Modifier.align(Alignment.CenterHorizontally),
         )
     }
 
@@ -116,9 +122,9 @@ fun AmountInstallmentsInputScreen(viewModel: AmountInstallmentsInputScreenViewMo
             },
             sheetState = sheetState,
             scrimColor = Color.Transparent,
-            containerColor = Color.Transparent,
+            containerColor = eldarPayLightBlueSecondaryColor,
             modifier = Modifier.padding(bottom = PADDING_LARGE),
-            dragHandle = { BottomSheetDefaults.DragHandle(color = Color.Transparent) }
+            dragHandle = { BottomSheetDefaults.DragHandle(color = eldarPayLightBlueSecondaryColor) }
         ) {
             NumPad(
                 maxDigits = null,

@@ -14,18 +14,13 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import com.example.cursocompose.R
 import com.example.cursocompose.ui.resource.EldarFontSize.FONT_SIZE_BUTTON
+import com.example.cursocompose.ui.resource.EldarSizes.BUTTON_HEIGHT
 import com.example.cursocompose.ui.resource.futuraFontFamily
 import com.example.cursocompose.ui.resource.mediumRoundedCornerShape
 import com.example.cursocompose.ui.theme.eldarPayLightBlueSecondaryColor
 
-@Preview(
-    widthDp = 360,
-    heightDp = 100,
-    showBackground = true,
-)
 @Composable
 fun DefaultButton(
     modifier: Modifier = Modifier,
@@ -55,7 +50,7 @@ fun DefaultButton(
 
                     else -> modifier
                 }
-            }.height(32.dp)
+            }.height(BUTTON_HEIGHT)
             .fillMaxWidth()
             .clickable { onClick() },
     ) {

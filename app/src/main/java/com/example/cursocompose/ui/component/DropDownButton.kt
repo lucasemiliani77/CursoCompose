@@ -21,9 +21,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.rotate
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.example.cursocompose.R
 import com.example.cursocompose.ui.component.text.NormalText
@@ -44,8 +46,10 @@ fun DropdownButton(
     onExpandedChange: (Boolean) -> Unit = { },
     onValueSelect: (String) -> Unit = { },
     onDismissRequest: () -> Unit = { },
+    horizontalPadding: Dp
 ) {
     ExposedDropdownMenuBox(
+        modifier = Modifier.padding(horizontal = horizontalPadding),
         expanded = isExpanded,
         onExpandedChange = onExpandedChange,
     ) {
@@ -68,7 +72,6 @@ fun DropdownButton(
             },
         )
 
-        // Menú desplegable con bordes y esquinas redondeadas
         Box(
             modifier = Modifier
                 .border(1.dp, eldarPayBlue, mediumRoundedCornerShape)
@@ -78,7 +81,9 @@ fun DropdownButton(
             ExposedDropdownMenu(
                 expanded = isExpanded,
                 onDismissRequest = onDismissRequest,
-                modifier = Modifier.background(eldarPayNumPadWhite)
+                modifier = Modifier
+                    .background(eldarPayNumPadWhite)
+                    .padding(horizontal = horizontalPadding)
             ) {
                 listOption.forEach { option ->
                     DropdownMenuItem(
@@ -119,7 +124,7 @@ fun DropdownButtonLabel(
             .fillMaxWidth()
             .height(48.dp)
             .border(1.dp, eldarPayBlue, mediumRoundedCornerShape)
-            .padding(horizontal = 0.dp, vertical = PADDING_NONE)
+            .padding(horizontal = PADDING_NONE, vertical = PADDING_NONE)
             .clip(mediumRoundedCornerShape)
             .background(eldarPayNumPadWhite)
     ) {
