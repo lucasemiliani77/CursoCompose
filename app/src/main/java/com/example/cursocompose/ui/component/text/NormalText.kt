@@ -3,9 +3,9 @@ package com.example.cursocompose.ui.component.text
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.TextUnit
@@ -14,8 +14,10 @@ import com.example.cursocompose.ui.resource.EldarFontSize.FONT_SIZE_BODY_LARGE
 import com.example.cursocompose.ui.resource.EldarFontSize.FONT_SIZE_BODY_MEDIUM
 import com.example.cursocompose.ui.resource.EldarFontSize.FONT_SIZE_HEAD_LARGE
 import com.example.cursocompose.ui.resource.EldarFontSize.FONT_SIZE_HEAD_MEDIUM
-import com.example.cursocompose.ui.theme.eldarPayBlue
-
+import com.example.cursocompose.ui.resource.futuraFontFamily
+import com.example.cursocompose.ui.theme.eldarPayDarkTextColor
+import com.example.cursocompose.ui.theme.eldarPayLightBlueColor
+import com.example.cursocompose.ui.theme.getGradientForState
 
 @Composable
 fun NormalText(
@@ -24,9 +26,10 @@ fun NormalText(
     textAlign: TextAlign = TextAlign.Start,
     fontSize: TextUnit = FONT_SIZE_BODY_LARGE,
 ) = Text(
+    fontFamily = futuraFontFamily,
     fontSize = fontSize,
     text = text,
-    color = eldarPayBlue,
+    color = eldarPayDarkTextColor,
     textAlign = textAlign,
     modifier = modifier,
 )
@@ -36,8 +39,9 @@ fun BigText(
     modifier: Modifier = Modifier,
     text: String,
     textAlign: TextAlign = TextAlign.Start,
-    color: Color = eldarPayBlue,
+    color: Color = eldarPayDarkTextColor,
 ) = Text(
+    fontFamily = futuraFontFamily,
     fontSize = FONT_SIZE_HEAD_MEDIUM,
     text = text,
     color = color,
@@ -52,8 +56,9 @@ fun XBigText(
     textAlign: TextAlign = TextAlign.Start,
     fontWeight: FontWeight = FontWeight(700),
     fontSize: TextUnit = FONT_SIZE_HEAD_LARGE,
-    color: Color = eldarPayBlue,
+    color: Color = eldarPayLightBlueColor,
 ) = Text(
+    fontFamily = futuraFontFamily,
     fontSize = fontSize,
     fontWeight = fontWeight,
     text = text,
@@ -70,9 +75,10 @@ fun SmallText(
     fontSize: TextUnit = FONT_SIZE_BODY_MEDIUM,
     textAlign: TextAlign = TextAlign.Start,
 ) = Text(
+    fontFamily = futuraFontFamily,
     fontSize = fontSize,
     text = text,
-    color = eldarPayBlue,
+    color = eldarPayDarkTextColor,
     textAlign = textAlign,
     modifier = modifier,
 )
@@ -84,10 +90,11 @@ fun XSmallText(
     textAlign: TextAlign = TextAlign.Start,
     fontSize: TextUnit = FONT_SIZE_BODY_EXTRA_SMALL,
 ) = Text(
+    fontFamily = futuraFontFamily,
     fontSize = fontSize,
     fontWeight = FontWeight(300),
     text = text,
-    color = eldarPayBlue,
+    color = eldarPayLightBlueColor,
     textAlign = textAlign,
     modifier = modifier,
     softWrap = true,
@@ -98,9 +105,10 @@ fun GrandientText(
     modifier: Modifier = Modifier,
     text: String,
     textAlign: TextAlign = TextAlign.Start,
-    color: Color = eldarPayBlue,
+    color: Color = eldarPayDarkTextColor,
     fontSize: TextUnit = FONT_SIZE_BODY_EXTRA_SMALL,
     fontWeight: FontWeight = FontWeight(400),
+    fontFamily: FontFamily = futuraFontFamily,
     isPressed: Boolean = false,
     pressedGradientColors: List<Color>? = null,
 ) {
@@ -122,6 +130,7 @@ fun GrandientText(
         TextStyle(
             fontSize = fontSize,
             fontWeight = fontWeight,
+            fontFamily = fontFamily,
             brush = textBrush,
         )
     Text(
@@ -130,12 +139,4 @@ fun GrandientText(
         modifier = modifier,
         style = textStyle,
     )
-}
-fun getGradientForState(
-    isPressed: Boolean,
-    pressedColors: List<Color>,
-    unpressedColors: List<Color>,
-): Brush {
-    val colors = if (isPressed) pressedColors else unpressedColors
-    return Brush.verticalGradient(colors)
 }
