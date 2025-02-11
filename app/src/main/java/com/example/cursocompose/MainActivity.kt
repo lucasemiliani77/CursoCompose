@@ -15,7 +15,7 @@ class MainActivity : ComponentActivity() {
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         enableEdgeToEdge()
         setContent {
-                EldarPayApp()
-            }
+            EldarPayApp()
         }
+    }
 }

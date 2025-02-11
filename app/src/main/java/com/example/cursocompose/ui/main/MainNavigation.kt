@@ -18,8 +18,8 @@ fun MainNavigation(navController: NavHostController) {
         }
 
         composable(MainScreens.Login.route) {
-//            LoginScreen(navController = navController)
-            AmountInstallmentsInputScreen()
+            LoginScreen(navController = navController)
+            //AmountInstallmentsInputScreen()
         }
 
     }

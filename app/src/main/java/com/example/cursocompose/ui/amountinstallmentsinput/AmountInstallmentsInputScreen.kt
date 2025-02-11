@@ -11,6 +11,7 @@ import androidx.compose.material3.ModalBottomSheet
 import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -21,6 +22,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.cursocompose.R
 import com.example.cursocompose.ui.component.DropdownButton
 import com.example.cursocompose.ui.component.NumPad
@@ -29,18 +31,18 @@ import com.example.cursocompose.ui.component.NumPadType
 import com.example.cursocompose.ui.theme.eldarPayLightBlueSecondaryColor
 import kotlinx.coroutines.launch
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun AmountInstallmentsInputScreen() {
-    val sheetState = rememberModalBottomSheetState()
+@OptIn(ExperimentalMaterial3Api::class)
+fun AmountInstallmentsInputScreen(viewModel: AmountInstallmentsInputScreenViewModel = hiltViewModel()) {
     val scope = rememberCoroutineScope()
-    var pin by remember { mutableStateOf("") }
     val focusManager = LocalFocusManager.current
 
-    var isSheetVisible by remember { mutableStateOf(false) }
+    val state by viewModel.state.collectAsState()
 
-    LaunchedEffect(isSheetVisible) {
-        if (isSheetVisible) {
+    val sheetState = rememberModalBottomSheetState()
+
+    LaunchedEffect(state.isSheetVisible) {
+        if (state.isSheetVisible) {
             scope.launch { sheetState.show() }
         } else {
             scope.launch { sheetState.hide() }
@@ -48,46 +50,44 @@ fun AmountInstallmentsInputScreen() {
     }
 
     Column(
-        Modifier.background(eldarPayLightBlueSecondaryColor)
+        Modifier
+            .background(eldarPayLightBlueSecondaryColor)
             .fillMaxSize()
             .padding(24.dp),
         verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
         NumPadTextView(
-            text = pin,
+            text = state.pin,
             hasError = false,
             errorMessage = stringResource(R.string.numpad_textview_error_message),
             type = NumPadType.PESOS,
             click = {
-                isSheetVisible = true
+                viewModel.setSheetVisible(true)
                 focusManager.clearFocus()
             },
             textViewHeight = 48
         )
+
         var isExpanded by remember { mutableStateOf(false) }
-        var selectedOption by remember { mutableStateOf<String?>(null) }
 
         DropdownButton(
             isExpanded = isExpanded,
             labelText = "Cuotas",
-            selectedOption = selectedOption,
-            listOption = listOf("1", "2", "6", "12", "24"),
-
-            onExpandedChange = {
-                isExpanded = it
-            },
+            selectedOption = state.selectedInstallment,
+            listOption = state.installmentsListOption,
+            onExpandedChange = { isExpanded = it },
             onValueSelect = { value ->
-                selectedOption = value
+                viewModel.selectInstallment(value)
                 isExpanded = false
             },
-            onDismissRequest = { isExpanded = false },
+            onDismissRequest = { isExpanded = false }
         )
     }
 
-    if (isSheetVisible) {
+    if (state.isSheetVisible) {
         ModalBottomSheet(
             onDismissRequest = {
-                isSheetVisible = false
+                viewModel.setSheetVisible(false)
                 focusManager.clearFocus()
             },
             sheetState = sheetState,
@@ -98,20 +98,14 @@ fun AmountInstallmentsInputScreen() {
         ) {
             NumPad(
                 maxDigits = null,
-                pin = pin,
-                onNumberClick = { digit ->
-                    pin += digit
-                },
-                onDeleteClick = {
-                    if (pin.isNotEmpty()) {
-                        pin = pin.dropLast(1)
-                    }
-                },
+                pin = state.pin,
+                onNumberClick = { digit -> viewModel.updatePin(digit) },
+                onDeleteClick = { viewModel.deleteLastDigit() },
                 onEnterClick = {
-                    isSheetVisible = false
+                    viewModel.setSheetVisible(false)
                     focusManager.clearFocus()
                 },
-                isAcceptEnabled = pin.isNotEmpty()
+                isAcceptEnabled = state.pin.isNotEmpty()
             )
         }
     }
