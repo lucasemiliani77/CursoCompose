@@ -22,5 +22,6 @@
     <string name="amount_installments_input_screen_title">"Ingresar monto y cuotas"</string>
     <string name="amount_installments_input_screen_drop_down_placeholder">"Cuotas"</string>
     <string name="amount_installments_input_screen_button_title">"Procesar venta"</string>
-
+    <string name="bluetooth_devices_screen_title">"Conectar a dispositivo bluetooth"</string>
+    <string name="bluetooth_devices_screen_button_title">"Actualizar dispositivos"</string>
 </resources>

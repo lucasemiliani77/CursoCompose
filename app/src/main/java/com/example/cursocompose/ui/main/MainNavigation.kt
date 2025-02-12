@@ -5,6 +5,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.example.cursocompose.ui.amountinstallmentsinput.AmountInstallmentsInputScreen
+import com.example.cursocompose.ui.bluethoothdevices.BlueToothDevicesScreen
 import com.example.cursocompose.ui.login.LoginScreen
 import com.example.cursocompose.ui.splash.SplashNavigation
 
@@ -19,7 +20,8 @@ fun MainNavigation(navController: NavHostController) {
 
         composable(MainScreens.Login.route) {
             //LoginScreen(navController = navController)
-            AmountInstallmentsInputScreen()
+            //AmountInstallmentsInputScreen()
+            BlueToothDevicesScreen()
         }
 
     }
