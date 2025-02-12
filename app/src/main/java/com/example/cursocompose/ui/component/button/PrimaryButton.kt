@@ -1,4 +1,4 @@
-package com.example.cursocompose.ui.component
+package com.example.cursocompose.ui.component.button
 
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable

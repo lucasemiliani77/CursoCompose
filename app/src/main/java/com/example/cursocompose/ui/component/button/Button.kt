@@ -1,4 +1,4 @@
-package com.example.cursocompose.ui.component
+package com.example.cursocompose.ui.component.button
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -13,9 +13,8 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import com.example.cursocompose.R
-import com.example.cursocompose.ui.resource.EldarFontSize.FONT_SIZE_BUTTON
+import com.example.cursocompose.ui.resource.EldarFontSize.FONT_SIZE_BODY_MEDIUM
 import com.example.cursocompose.ui.resource.EldarSizes.BUTTON_HEIGHT
 import com.example.cursocompose.ui.resource.futuraFontFamily
 import com.example.cursocompose.ui.resource.mediumRoundedCornerShape
@@ -58,7 +57,7 @@ fun DefaultButton(
             text = text,
             color = textColor,
             fontFamily = futuraFontFamily,
-            fontSize = FONT_SIZE_BUTTON,
+            fontSize = FONT_SIZE_BODY_MEDIUM,
             textAlign = TextAlign.Center,
             modifier = Modifier.align(Alignment.Center),
         )

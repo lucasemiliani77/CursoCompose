@@ -27,6 +27,7 @@ import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import com.example.cursocompose.R
 import com.example.cursocompose.ui.resource.EldarFontSize.FONT_SIZE_BODY_LARGE
+import com.example.cursocompose.ui.resource.EldarFontSize.FONT_SIZE_BODY_MEDIUM
 import com.example.cursocompose.ui.resource.EldarFontSize.FONT_SIZE_MAX_NUM_PAD_TEXT_VIEW
 import com.example.cursocompose.ui.resource.EldarFontSize.FONT_SIZE_MIN_NUM_PAD_TEXT_VIEW
 import com.example.cursocompose.ui.resource.EldarFontSize.FONT_SIZE_NUM_PAD_TEXT_VIEW_DNI_PIN
@@ -34,12 +35,11 @@ import com.example.cursocompose.ui.resource.EldarSizes.BORDER_WIDTH
 import com.example.cursocompose.ui.resource.EldarSizes.PADDING_LARGE
 import com.example.cursocompose.ui.resource.EldarSizes.PADDING_SMALL
 import com.example.cursocompose.ui.resource.mediumRoundedCornerShape
-import com.example.cursocompose.ui.theme.eldarPayBlue
 import com.example.cursocompose.ui.theme.eldarPayErrorRed
-import com.example.cursocompose.ui.theme.eldarPayLightBlue
-import com.example.cursocompose.ui.theme.eldarPayNumPadWhite
+import com.example.cursocompose.ui.theme.eldarPayLightBlueCardColor
+import com.example.cursocompose.ui.theme.eldarPayLightBlueColor
+import com.example.cursocompose.ui.theme.eldarPayLightBlueTappedKeyColor
 import com.example.cursocompose.ui.theme.eldarPayTextBlue
-import com.example.cursocompose.ui.theme.eldarPayTextViewBackgroundFocus
 import com.example.cursocompose.util.Constants.CURRENCY_SYMBOL_AR
 import com.example.cursocompose.util.Constants.CURRENCY_SYMBOL_DOLLAR
 import com.example.cursocompose.util.Constants.NUM_PAD_TEXT_VIEW_MAX_LENGTH
@@ -57,22 +57,23 @@ fun NumPadTextView(
     type: NumPadType,
     textViewHeight: Int = 48,
     click: () -> Unit,
-    horizontalPadding: Dp?
+    horizontalPadding: Dp?,
+    resizeText: Boolean = true
 ) {
     val interactionSource = remember { MutableInteractionSource() }
     val isPressed by interactionSource.collectIsPressedAsState()
     val isFocused by interactionSource.collectIsFocusedAsState()
 
     val backgroundColor = when {
-        isPressed -> eldarPayTextViewBackgroundFocus
-        isFocused -> eldarPayTextViewBackgroundFocus
-        else -> eldarPayNumPadWhite
+        isPressed -> eldarPayLightBlueTappedKeyColor
+        isFocused -> eldarPayLightBlueTappedKeyColor
+        else -> eldarPayLightBlueCardColor
     }
 
     val textColor = when {
-        isPressed -> eldarPayBlue
+        isPressed -> eldarPayLightBlueColor
         isFocused -> eldarPayTextBlue
-        else -> eldarPayBlue
+        else -> eldarPayLightBlueColor
     }
     val maskedText =
         when (type) {
@@ -84,7 +85,9 @@ fun NumPadTextView(
 
     val fontSize =
         when (type) {
-            NumPadType.PESOS, NumPadType.DOLLARS -> calculateFontSize(maskedText)
+            NumPadType.PESOS, NumPadType.DOLLARS ->
+                if (resizeText) calculateFontSize(maskedText)
+                else FONT_SIZE_BODY_MEDIUM
             else -> FONT_SIZE_NUM_PAD_TEXT_VIEW_DNI_PIN
         }
 
@@ -108,7 +111,7 @@ fun NumPadTextView(
                 .background(backgroundColor)
                 .border(
                     width = BORDER_WIDTH,
-                    color = if (hasError) eldarPayErrorRed else eldarPayLightBlue,
+                    color = if (hasError) eldarPayErrorRed else eldarPayLightBlueColor,
                     shape = mediumRoundedCornerShape,
                 ),
             verticalAlignment = Alignment.CenterVertically,

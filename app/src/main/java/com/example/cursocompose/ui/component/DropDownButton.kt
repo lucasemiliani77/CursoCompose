@@ -21,7 +21,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.rotate
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -32,9 +31,9 @@ import com.example.cursocompose.ui.component.text.NormalText
 import com.example.cursocompose.ui.resource.EldarSizes.PADDING_LARGE
 import com.example.cursocompose.ui.resource.EldarSizes.PADDING_NONE
 import com.example.cursocompose.ui.resource.mediumRoundedCornerShape
-import com.example.cursocompose.ui.theme.eldarPayBlue
 import com.example.cursocompose.ui.theme.eldarPayDarkTextColor
-import com.example.cursocompose.ui.theme.eldarPayNumPadWhite
+import com.example.cursocompose.ui.theme.eldarPayLightBlueCardColor
+import com.example.cursocompose.ui.theme.eldarPayLightBlueColor
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -74,15 +73,15 @@ fun DropdownButton(
 
         Box(
             modifier = Modifier
-                .border(1.dp, eldarPayBlue, mediumRoundedCornerShape)
-                .background(eldarPayNumPadWhite)
+                .border(1.dp, eldarPayLightBlueColor, mediumRoundedCornerShape)
+                .background(eldarPayLightBlueCardColor)
                 .clip(mediumRoundedCornerShape)
         ) {
             ExposedDropdownMenu(
                 expanded = isExpanded,
                 onDismissRequest = onDismissRequest,
                 modifier = Modifier
-                    .background(eldarPayNumPadWhite)
+                    .background(eldarPayLightBlueCardColor)
                     .padding(horizontal = horizontalPadding)
             ) {
                 listOption.forEach { option ->
@@ -123,10 +122,10 @@ fun DropdownButtonLabel(
         modifier = modifier
             .fillMaxWidth()
             .height(48.dp)
-            .border(1.dp, eldarPayBlue, mediumRoundedCornerShape)
+            .border(1.dp, eldarPayLightBlueColor, mediumRoundedCornerShape)
             .padding(horizontal = PADDING_NONE, vertical = PADDING_NONE)
             .clip(mediumRoundedCornerShape)
-            .background(eldarPayNumPadWhite)
+            .background(eldarPayLightBlueCardColor)
     ) {
         NormalText(
             text = selectedOption ?: labelText,

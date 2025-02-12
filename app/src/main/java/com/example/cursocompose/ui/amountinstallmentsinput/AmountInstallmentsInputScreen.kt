@@ -26,7 +26,9 @@ import androidx.compose.ui.res.stringResource
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.cursocompose.R
 import com.example.cursocompose.ui.component.DropdownButton
-import com.example.cursocompose.ui.component.PrimaryButton
+import com.example.cursocompose.ui.component.EldarPayIconMessage
+import com.example.cursocompose.ui.component.EldarPayTopAppBar
+import com.example.cursocompose.ui.component.button.PrimaryButton
 import com.example.cursocompose.ui.component.numpad.NumPad
 import com.example.cursocompose.ui.component.numpad.NumPadTextView
 import com.example.cursocompose.ui.component.numpad.NumPadType
@@ -67,16 +69,14 @@ fun AmountInstallmentsInputScreen(viewModel: AmountInstallmentsInputScreenViewMo
             modifier = Modifier.weight(1f, fill = true),
             horizontalAlignment = Alignment.Start
         ) {
+            EldarPayTopAppBar()
 
-            Spacer(modifier = Modifier.height(SPACER_BIG))
-
-            BigText(
-                text = stringResource(R.string.amount_installments_input_screen_title),
-                color = eldarPayDarkTextColor,
-                modifier = Modifier.padding(horizontal = PADDING_LARGE)
+            EldarPayIconMessage(
+                msg = stringResource(R.string.amount_installments_input_screen_title),
+                iconId = R.drawable.icon_arrow_back
             )
 
-            Spacer(modifier = Modifier.height(SPACER_BIG))
+            Spacer(modifier = Modifier.height(SPACER_MEDIUM))
 
             NumPadTextView(
                 text = state.pin,
@@ -87,7 +87,9 @@ fun AmountInstallmentsInputScreen(viewModel: AmountInstallmentsInputScreenViewMo
                 click = {
                     viewModel.setSheetVisible(true)
                     focusManager.clearFocus()
-                }, horizontalPadding = PADDING_LARGE
+                },
+                horizontalPadding = PADDING_LARGE,
+                resizeText = false
             )
 
             Spacer(modifier = Modifier.height(SPACER_MEDIUM))

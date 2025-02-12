@@ -21,11 +21,10 @@ import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.cursocompose.R
-import com.example.cursocompose.ui.theme.eldarPayBlue
 import com.example.cursocompose.ui.theme.eldarPayDisabledGrey
 import com.example.cursocompose.ui.theme.eldarPayGreenOk
-import com.example.cursocompose.ui.theme.eldarPayLightBlue
-import com.example.cursocompose.ui.theme.eldarPayNumPadWhite
+import com.example.cursocompose.ui.theme.eldarPayLightBlueCardColor
+import com.example.cursocompose.ui.theme.eldarPayLightBlueColor
 import com.example.cursocompose.ui.theme.eldarPayPressedNumPad
 
 val toneGenerator = ToneGenerator(AudioManager.STREAM_SYSTEM, 100)
@@ -37,7 +36,7 @@ fun playTone(toneType: Int) {
 @Composable
 fun NumPad(
     maxDigits: Int?,
-    pin: String, // Recibir el estado del pin como parámetro
+    pin: String,
     onNumberClick: (String) -> Unit,
     onDeleteClick: () -> Unit,
     onEnterClick: (String) -> Unit,
@@ -112,15 +111,15 @@ fun PinPadButton(
 
     val backgroundColor =
         when {
-            !isEnabled -> eldarPayNumPadWhite
+            !isEnabled -> eldarPayLightBlueCardColor
             isPressed -> eldarPayPressedNumPad
-            else -> eldarPayNumPadWhite
+            else -> eldarPayLightBlueCardColor
         }
     val textColor =
         when {
             !isEnabled -> eldarPayDisabledGrey
-            isPressed -> eldarPayBlue
-            else -> eldarPayBlue
+            isPressed -> eldarPayLightBlueColor
+            else -> eldarPayLightBlueColor
         }
 
     Box(
@@ -130,7 +129,7 @@ fun PinPadButton(
             .width(106.dp)
             .height(74.dp)
             .background(color = backgroundColor, shape = RoundedCornerShape(8.dp))
-            .border(width = 1.dp, color = eldarPayBlue, shape = RoundedCornerShape(8.dp))
+            .border(width = 1.dp, color = eldarPayLightBlueColor, shape = RoundedCornerShape(8.dp))
             .pointerInput(isEnabled) {
                 detectTapGestures(
                     onPress = {
@@ -152,7 +151,7 @@ fun PinPadButton(
                 Icon(
                     imageVector = ImageVector.vectorResource(R.drawable.outline_backspace_24),
                     contentDescription = "Delete",
-                    tint = if (isEnabled) eldarPayLightBlue else eldarPayDisabledGrey,
+                    tint = if (isEnabled) eldarPayLightBlueColor else eldarPayDisabledGrey,
                     modifier = Modifier.width(50.dp).height(50.dp),
                 )
 

@@ -71,7 +71,7 @@ fun XBigText(
 fun SmallText(
     modifier: Modifier = Modifier,
     text: String,
-    fontSize: TextUnit = FONT_SIZE_BODY_MEDIUM,
+    fontSize: TextUnit = FONT_SIZE_HEAD_LARGE,
     textAlign: TextAlign = TextAlign.Start,
 ) = Text(
     fontFamily = futuraFontFamily,
