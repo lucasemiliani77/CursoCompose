@@ -3,6 +3,7 @@ package com.example.cursocompose.ui.resource
 import androidx.compose.ui.unit.dp
 
 object EldarSizes {
+    val DROPDOWN_WIDTH = 362.dp
     const val TEXT_VIEW_HEIGHT = 48
     val BUTTON_HEIGHT = 48.dp
     val SPACER_BIG = 40.dp

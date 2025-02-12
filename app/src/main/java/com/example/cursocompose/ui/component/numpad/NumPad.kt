@@ -14,6 +14,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.res.stringResource
@@ -21,6 +22,7 @@ import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.cursocompose.R
+import com.example.cursocompose.ui.theme.eldarPayDarkTextColor
 import com.example.cursocompose.ui.theme.eldarPayDisabledGrey
 import com.example.cursocompose.ui.theme.eldarPayGreenOk
 import com.example.cursocompose.ui.theme.eldarPayLightBlueCardColor
@@ -118,8 +120,8 @@ fun PinPadButton(
     val textColor =
         when {
             !isEnabled -> eldarPayDisabledGrey
-            isPressed -> eldarPayLightBlueColor
-            else -> eldarPayLightBlueColor
+            isPressed -> eldarPayDarkTextColor
+            else -> eldarPayDarkTextColor
         }
 
     Box(

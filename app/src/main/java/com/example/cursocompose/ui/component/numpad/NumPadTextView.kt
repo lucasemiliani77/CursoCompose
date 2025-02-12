@@ -71,9 +71,9 @@ fun NumPadTextView(
     }
 
     val textColor = when {
-        isPressed -> eldarPayLightBlueColor
+        isPressed -> eldarPayTextBlue
         isFocused -> eldarPayTextBlue
-        else -> eldarPayLightBlueColor
+        else -> eldarPayTextBlue
     }
     val maskedText =
         when (type) {

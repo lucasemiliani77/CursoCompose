@@ -28,6 +28,9 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.example.cursocompose.R
 import com.example.cursocompose.ui.component.text.NormalText
+import com.example.cursocompose.ui.resource.EldarSizes.BORDER_WIDTH
+import com.example.cursocompose.ui.resource.EldarSizes.BUTTON_HEIGHT
+import com.example.cursocompose.ui.resource.EldarSizes.DROPDOWN_WIDTH
 import com.example.cursocompose.ui.resource.EldarSizes.PADDING_LARGE
 import com.example.cursocompose.ui.resource.EldarSizes.PADDING_NONE
 import com.example.cursocompose.ui.resource.mediumRoundedCornerShape
@@ -81,6 +84,7 @@ fun DropdownButton(
                 expanded = isExpanded,
                 onDismissRequest = onDismissRequest,
                 modifier = Modifier
+                    .width(DROPDOWN_WIDTH)
                     .background(eldarPayLightBlueCardColor)
                     .padding(horizontal = horizontalPadding)
             ) {
@@ -121,8 +125,8 @@ fun DropdownButtonLabel(
     Box(
         modifier = modifier
             .fillMaxWidth()
-            .height(48.dp)
-            .border(1.dp, eldarPayLightBlueColor, mediumRoundedCornerShape)
+            .height(BUTTON_HEIGHT)
+            .border(BORDER_WIDTH, eldarPayLightBlueColor, mediumRoundedCornerShape)
             .padding(horizontal = PADDING_NONE, vertical = PADDING_NONE)
             .clip(mediumRoundedCornerShape)
             .background(eldarPayLightBlueCardColor)

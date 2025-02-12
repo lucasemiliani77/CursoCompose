@@ -11,7 +11,6 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.TextUnit
 import com.example.cursocompose.ui.resource.EldarFontSize.FONT_SIZE_BODY_EXTRA_SMALL
 import com.example.cursocompose.ui.resource.EldarFontSize.FONT_SIZE_BODY_LARGE
-import com.example.cursocompose.ui.resource.EldarFontSize.FONT_SIZE_BODY_MEDIUM
 import com.example.cursocompose.ui.resource.EldarFontSize.FONT_SIZE_HEAD_LARGE
 import com.example.cursocompose.ui.resource.futuraFontFamily
 import com.example.cursocompose.ui.theme.eldarPayDarkTextColor
