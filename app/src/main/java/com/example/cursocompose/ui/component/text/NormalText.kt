@@ -23,11 +23,12 @@ fun NormalText(
     text: String,
     textAlign: TextAlign = TextAlign.Start,
     fontSize: TextUnit = FONT_SIZE_BODY_LARGE,
+    color: Color = eldarPayDarkTextColor
 ) = Text(
     fontFamily = futuraFontFamily,
     fontSize = fontSize,
     text = text,
-    color = eldarPayDarkTextColor,
+    color = color,
     textAlign = textAlign,
     modifier = modifier,
 )

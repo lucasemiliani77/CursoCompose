@@ -33,6 +33,7 @@ import com.example.cursocompose.ui.resource.EldarSizes.BUTTON_HEIGHT
 import com.example.cursocompose.ui.resource.EldarSizes.DROPDOWN_WIDTH
 import com.example.cursocompose.ui.resource.EldarSizes.PADDING_LARGE
 import com.example.cursocompose.ui.resource.EldarSizes.PADDING_NONE
+import com.example.cursocompose.ui.resource.EldarSizes.PADDING_SMALL
 import com.example.cursocompose.ui.resource.mediumRoundedCornerShape
 import com.example.cursocompose.ui.theme.eldarPayDarkTextColor
 import com.example.cursocompose.ui.theme.eldarPayLightBlueCardColor
@@ -66,8 +67,8 @@ fun DropdownButton(
                     modifier =
                     Modifier
                         .rotate(if (isExpanded) 180f else 0f)
-                        .width(40.dp)
-                        .height(40.dp)
+                        .width(24.dp)
+                        .height(24.dp)
                         .menuAnchor(MenuAnchorType.PrimaryNotEditable),
                     tint = eldarPayDarkTextColor,
                 )
@@ -139,7 +140,9 @@ fun DropdownButtonLabel(
         )
 
         Row(
-            modifier = Modifier.align(Alignment.CenterEnd),
+            modifier = Modifier
+                .align(Alignment.CenterEnd)
+                .padding(end = PADDING_SMALL),
             verticalAlignment = Alignment.CenterVertically,
         ) {
             trailingIcon()
