@@ -22,16 +22,20 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.cursocompose.R
 import com.example.cursocompose.ui.component.EldarPayTopAppBar
 import com.example.cursocompose.ui.component.button.PrimaryButton
+import com.example.cursocompose.ui.component.text.NormalText
 import com.example.cursocompose.ui.component.text.SmallText
 import com.example.cursocompose.ui.resource.EldarSizes.PADDING_EXTRA_LARGE
 import com.example.cursocompose.ui.resource.EldarSizes.PADDING_LARGE
 import com.example.cursocompose.ui.resource.EldarSizes.PADDING_NONE
+import com.example.cursocompose.ui.resource.EldarSizes.SPACER_EXTRA_SMALL
+import com.example.cursocompose.ui.resource.EldarSizes.SPACER_SMALL
 import com.example.cursocompose.ui.resource.mediumRoundedCornerShape
 import com.example.cursocompose.ui.theme.eldarPayDarkTextColor
 import com.example.cursocompose.ui.theme.eldarPayLightBlueSecondaryColor
@@ -63,13 +67,27 @@ fun BlueToothDevicesScreen(viewModel: BlueToothDevicesScreenViewModel = hiltView
                     .padding(horizontal = PADDING_LARGE, vertical = PADDING_EXTRA_LARGE)
                     .fillMaxWidth(),
             )
+
+            DeviceList(getMockDevices())
         }
 
         Column(
             modifier = Modifier
                 .weight(1F)
         ) {
+            NormalText(
+                text = stringResource(R.string.bluetooth_devices_screen_sub_title),
+                modifier = Modifier
+                    .padding(horizontal = PADDING_LARGE, vertical = PADDING_EXTRA_LARGE)
+                    .fillMaxWidth(),
+                textAlign = TextAlign.Center
+            )
+
+            Spacer(Modifier.height(SPACER_EXTRA_SMALL))
+
             DeviceList(getMockDevices())
+
+            Spacer(Modifier.height(SPACER_EXTRA_SMALL))
         }
 
         PrimaryButton(
@@ -81,14 +99,9 @@ fun BlueToothDevicesScreen(viewModel: BlueToothDevicesScreenViewModel = hiltView
 
 fun getMockDevices(): List<Devices> {
     return listOf(
-        Devices(
-            name = "Bluetooth 1",
-            icon = R.drawable.baseline_bluetooth_24,
-            status = "Conectado"
-        ),
         Devices(name = "Bluetooth 1", icon = R.drawable.baseline_bluetooth_24, status = "Conectar"),
-        Devices(name = "Bluetooth 1", icon = R.drawable.baseline_bluetooth_24, status = "Conectar"),
-        Devices(name = "Bluetooth 1", icon = R.drawable.baseline_bluetooth_24, status = "Conectar")
+        Devices(name = "Bluetooth 2", icon = R.drawable.baseline_bluetooth_24, status = "Conectar"),
+        Devices(name = "Bluetooth 3", icon = R.drawable.baseline_bluetooth_24, status = "Conectar"),
     )
 }
 
