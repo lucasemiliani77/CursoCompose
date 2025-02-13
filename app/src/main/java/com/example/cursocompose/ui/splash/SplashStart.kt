@@ -21,7 +21,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.cursocompose.R
-import com.example.cursocompose.ui.theme.eldarLightBlueColor
+import com.example.cursocompose.ui.theme.eldarPayLightBlueColor
 import kotlin.math.pow
 
 @Composable
@@ -51,7 +51,7 @@ fun SplashStart(navController: NavController) {
             modifier = Modifier.fillMaxSize(),
             onDraw = {
                 drawCircle(
-                    color = eldarLightBlueColor,
+                    color = eldarPayLightBlueColor,
                     radius = radius
                 )
             })

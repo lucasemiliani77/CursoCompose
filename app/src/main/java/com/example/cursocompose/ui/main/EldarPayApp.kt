@@ -1,5 +1,6 @@
 package com.example.cursocompose.ui.main
 
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.compose.runtime.Composable
 import androidx.navigation.compose.rememberNavController
 import com.example.cursocompose.ui.theme.EldarPayTheme

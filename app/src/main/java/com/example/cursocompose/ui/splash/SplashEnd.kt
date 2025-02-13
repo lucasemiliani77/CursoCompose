@@ -24,14 +24,14 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.cursocompose.R
 import com.example.cursocompose.ui.main.MainScreens
-import com.example.cursocompose.ui.theme.eldarLightBlueColor
+import com.example.cursocompose.ui.theme.eldarPayLightBlueColor
 
 @Composable
 fun SplashEnd(navController: NavController) {
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(eldarLightBlueColor),
+            .background(eldarPayLightBlueColor),
         contentAlignment = Alignment.Center
     ) {
         var expanded by remember { mutableStateOf(false) }
