@@ -19,6 +19,8 @@ val eldarPayDarkerBlueColor = Color(0xFF254766)
 val eldarPayBlueGradientBrush = Brush.verticalGradient(listOf(eldarPayLightBlueColor, eldarPayBlueColor))
 val eldarPayGreenOk = Color(0xFF008438)
 val eldarPayErrorRed = Color(0xFFa50f0f)
+val eldarPaySuccessLightGreen = Color(0xFFA5F5D4)
+
 
 /* DAFAULT COLORS */
 val Purple80 = Color(0xFFD0BCFF)
