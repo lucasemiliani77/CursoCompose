@@ -8,7 +8,9 @@ object EldarSizes {
     val BUTTON_HEIGHT = 48.dp
     val SPACER_BIG = 40.dp
     val SPACER_MEDIUM = 30.dp
+    val PADDING_EXTRA_LARGE = 24.dp
     val SPACER_SMALL = 20.dp
+    val SPACER_EXTRA_SMALL = 10.dp
     val PADDING_LARGE = 16.dp
     val PADDING_MEDIUM = 12.dp
     val PADDING_SMALL = 8.dp
